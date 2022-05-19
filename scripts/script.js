@@ -42,7 +42,10 @@ let gameLoop = setInterval(updater, 30);
        enemy.style.transform += 'translateX('+(Math.round(Math.random()*900))+'px)';
        playZone.appendChild(enemy);
        setTimeout(() => {
-           playZone.removeChild(enemy);
+           if(life>=1){
+            playZone.removeChild(enemy);
+           }
+           
        }, 10000);
     }
 
