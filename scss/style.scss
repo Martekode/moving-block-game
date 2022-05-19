@@ -6,6 +6,13 @@ body{
     margin: 0px;
     padding: 0px;
     overflow: hidden;
+    background-color: grey;
+}
+.btn-start{
+    height:40px;
+    width:60px;
+    background-color: green;
+    border-color: lightgreen;
 }
 .playZone{
     box-shadow: inset 15px 15px 0 red, inset -15px -15px 0 red;
