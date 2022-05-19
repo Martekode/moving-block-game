@@ -9,6 +9,8 @@
   height: 30px;
   border-radius: 50%;
   position: absolute;
+  left: 0;
+  top: 0;
   background-color: green;
 }
 /*# sourceMappingURL=style.css.map */
