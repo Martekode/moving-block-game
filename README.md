@@ -21,3 +21,6 @@ the collision serverd as a small challenge and after my training arc with the to
 i saw the problem... i needed enemies to spawn and chace me but oh boy was this an almost impossible task for me. even with a MASSSSSSSSIVE training arc again with Tim The G. the training arc was needed because i senced i did it the wrong way when i was trying and i could sence complications going further on the road. I managed to let enemies spawn with a limit of 5 but even though i gave it a limit... they didn't disappear. Now they do.... kind off... well... they do and they don't. it's... complicated, see... the devil is laughing in my face again and out of frustration i started writing this story. i feel another training arc comming because the devil here won't stop laughing...
 
 ## fin out in the next episode of Dragon Ball Mediocre
+* the adding of collision on enemies 
+* proper deletion at the end 
+* and perfect reinitialising
