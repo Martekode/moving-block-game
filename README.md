@@ -22,7 +22,8 @@ i saw the problem... i needed enemies to spawn and chace me but oh boy was this 
 
 ## Setting camp (from third person now)
 the hero went mad from the laughing, but when all seemed lost he remembered the training with the grand wizard and got an idea. he just had to check if either the x value or the y value from the enemy was equal to his coördinates. But it wouldn't work because...Who is the enemy? Well, after some thinking about his training he remembered that foreach thingamajig. So he got cracking. And it worked.... "Huh!" he said simultaniously gasping. "It worked!... Still bugs though.." hitting his own forhead until it was red. But the good thing was that the devil was silent. The hero remembered his immunity check and applied it. Know he would't instantly die upon hitting the enemy.
--collision-
+~collision~
+
 
 ## find out in the next episode of Dragon Ball Mediocre
 * proper deletion at the end 
