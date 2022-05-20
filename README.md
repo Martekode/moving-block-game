@@ -26,3 +26,4 @@ the hero went mad from the laughing, but when all seemed lost he remembered the 
 ## find out in the next episode of Dragon Ball Mediocre
 * proper deletion at the end 
 * and perfect reinitialising
+* display health
