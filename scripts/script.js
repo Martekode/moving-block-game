@@ -10,6 +10,7 @@ let mouse;
 let dontStart = true;
 let immune = false;
 let isEnemy = false;
+let enemies = [];
 document.body.addEventListener('mousemove', function(e){
     dontStart = false;
     mouse = e;
@@ -28,29 +29,59 @@ function init(){
         mouse = e;});
     isEnemy = false;
     gameLoop = setInterval(updater,30);
-    enemySpawnLoop = setInterval(enemySpawn,10000);
+    enemySpawnLoop = setInterval(enemySpawn,5000);
 }
 
 
-
-let enemySpawnLoop = setInterval(enemySpawn,10000);
+let renderEnemies = setInterval(function(){
+    moveEnemies();
+    updateEnemy()
+},30)
+let enemySpawnLoop = setInterval(function(){
+    enemySpawn(speed)
+    speed++;
+    if (enemies.length > 5){
+        enemies.unshift();
+    }
+},5000);
 let gameLoop = setInterval(updater, 30);
-
-    function enemySpawn(enemy){
-       enemy = document.createElement('div');
-       enemy.classList.add('enemy');
-       enemy.id = "enemy";
-       enemy.style.transform = 'translateY('+(Math.round(Math.random()*700))+'px)';
-       enemy.style.transform += 'translateX('+(Math.round(Math.random()*900))+'px)';
-       playZone.appendChild(enemy);
-       isEnemy = true;
-       setTimeout(() => {
-           if(life>=1){
-            playZone.removeChild(enemy);
-            isEnemy =false;
-           }
-           
-       }, 10000);
+let speed = 1;
+    function enemySpawn(speed){
+       let enemyDiv = document.createElement('div');
+       enemyDiv.classList.add('enemy');
+       enemyDiv.id = "enemy";
+       let enemy = {
+           div: enemyDiv,
+           x:Math.round(Math.random()*windowWidth-(border+radius)),
+           y: Math.round(Math.random()*windowHeight-(border+radius)),
+           speed : speed
+       }
+       
+       enemies.push(enemy);
+    }
+    function updateEnemy(){
+        enemies.forEach(enemy => {
+            
+            enemy.div.style.left = `${enemy.x}px`;
+            enemy.div.style.top = `${enemy.y}px`;
+            playZone.appendChild(enemy.div);
+            isEnemy = true;
+        });
+    }
+    function moveEnemies(){
+        enemies.forEach(enemy => {
+            if(mouse.x > enemy.x){
+                enemy.x += enemy.speed
+            }
+            else{
+                enemy.x -= enemy.speed
+            }
+            if(mouse.y > enemy.y){
+                enemy.y += enemy.speed
+            }else{
+                enemy.y -= enemy.speed
+            }
+        });
     }
 
     function updater (){
@@ -98,7 +129,7 @@ let gameLoop = setInterval(updater, 30);
         clearInterval(gameLoop);
         clearInterval(enemySpawnLoop);
         if (isEnemy === true){
-            playZone.removeChild(enemy);
+            playZone.removeChild(enemyDiv);
         }
         startButton.addEventListener('click',function(){
             init()
