@@ -17,7 +17,7 @@ document.body.addEventListener('mousemove', function(e){
 })
 function collisionChecker(){
     let enemy = enemies.forEach(enemy =>{
-        if (enemy.x == mouse.x && immune === false ||enemy.y == mouse.y && immune === false){
+        if (enemy.x == mouse.x && enemy.y== mouse.y && immune === false){
             immune = true;
             life--;
             setTimeout(() => {
