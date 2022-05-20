@@ -15,7 +15,20 @@ document.body.addEventListener('mousemove', function(e){
     dontStart = false;
     mouse = e;
 })
-
+function collisionChecker(){
+    let enemy = enemies.forEach(enemy =>{
+        if (enemy.x == mouse.x && immune === false ||enemy.y == mouse.y && immune === false){
+            immune = true;
+            life--;
+            setTimeout(() => {
+                immune = false;
+            }, 2000);
+        }
+        console.log(life);
+    });
+    
+    
+}
 function init(){
     mousePosDisplay = document.getElementById('mousePos');
     player = document.getElementById('player');
@@ -45,10 +58,14 @@ function init(){
             
         }
     },5000);
-    
+    updateEnemyCollosion = setInterval(function(){
+        collisionChecker();
+    }, 30)
 }
 
-
+let updateEnemyCollosion = setInterval(function(){
+    collisionChecker();
+}, 30)
 let renderEnemies = setInterval(function(){
     moveEnemies();
     updateEnemy()
@@ -147,6 +164,7 @@ let speed = 1;
         clearInterval(gameLoop);
         clearInterval(enemySpawnLoop);
         clearInterval(renderEnemies);
+        clearInterval(updateEnemyCollosion);
         if (isEnemy === true){
             for (let i = 0;i<enemies.length; i++){
                 enemies[i].div.remove();
