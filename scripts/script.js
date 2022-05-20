@@ -9,6 +9,7 @@ let playZone = document.getElementById('playZone');
 let mouse;
 let dontStart = true;
 let immune = false;
+let isEnemy = false;
 document.body.addEventListener('mousemove', function(e){
     dontStart = false;
     mouse = e;
@@ -25,6 +26,7 @@ function init(){
     document.body.addEventListener('mousemove', function(e){
         dontStart = false;
         mouse = e;});
+    isEnemy = false;
     gameLoop = setInterval(updater,30);
     enemySpawnLoop = setInterval(enemySpawn,10000);
 }
@@ -41,9 +43,11 @@ let gameLoop = setInterval(updater, 30);
        enemy.style.transform = 'translateY('+(Math.round(Math.random()*700))+'px)';
        enemy.style.transform += 'translateX('+(Math.round(Math.random()*900))+'px)';
        playZone.appendChild(enemy);
+       isEnemy = true;
        setTimeout(() => {
            if(life>=1){
             playZone.removeChild(enemy);
+            isEnemy =false;
            }
            
        }, 10000);
@@ -93,11 +97,14 @@ let gameLoop = setInterval(updater, 30);
         startButton.innerText = "start";
         clearInterval(gameLoop);
         clearInterval(enemySpawnLoop);
-        playZone.removeChild(enemy);
-        
+        if (isEnemy === true){
+            playZone.removeChild(enemy);
+        }
         startButton.addEventListener('click',function(){
             init()
             playZone.removeChild(startButton);
+            
+            
         })
     }
 }
