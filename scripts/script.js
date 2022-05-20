@@ -28,8 +28,24 @@ function init(){
         dontStart = false;
         mouse = e;});
     isEnemy = false;
+    enemies = [];
+    speed = 1;
     gameLoop = setInterval(updater,30);
     enemySpawnLoop = setInterval(enemySpawn,5000);
+    renderEnemies = setInterval(function(){
+        moveEnemies();
+        updateEnemy()
+    },30)
+    enemySpawnLoop = setInterval(function(){
+        enemySpawn(speed)
+        speed++;
+        if (enemies.length > 5){
+            let enemy = enemies.shift();
+            enemy.div.remove();
+            
+        }
+    },5000);
+    
 }
 
 
@@ -41,7 +57,9 @@ let enemySpawnLoop = setInterval(function(){
     enemySpawn(speed)
     speed++;
     if (enemies.length > 5){
-        enemies.unshift();
+        let enemy = enemies.shift();
+        enemy.div.remove();
+        
     }
 },5000);
 let gameLoop = setInterval(updater, 30);
@@ -128,8 +146,14 @@ let speed = 1;
         startButton.innerText = "start";
         clearInterval(gameLoop);
         clearInterval(enemySpawnLoop);
+        clearInterval(renderEnemies);
         if (isEnemy === true){
-            playZone.removeChild(enemyDiv);
+            for (let i = 0;i<enemies.length; i++){
+                enemies[i].div.remove();
+            }
+            /*enemies.forEach(enemy => {
+            enemy.div.remove();
+            })*/
         }
         startButton.addEventListener('click',function(){
             init()
